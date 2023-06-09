@@ -11,7 +11,9 @@ This project was undertaken as part of the course DDA3005: Numerical Methods dur
    Implemented the two-phase procedure, detailed in the lectures, to compute the singular value decomposition of any given matrix $A \in \mathbb{R}^{m \times n}$, denoted as:
 
    $$
-     \text{A} = {\text{U} \Sigma \text{V}}^\text{T}
+
+     {\text{A} = {\text{U} \Sigma \text{V}}^\text{T}}
+
    $$
 
    This was achieved utilizing Python, exhibiting a solid understanding of linear algebra and programming.
