@@ -251,4 +251,141 @@ def to_grayscale(img):
         else:
             ax.imshow(im)
 
-    return img_gray
+    return img_gray # Output grayscale image
+
+
+def process_and_plot_image(image_path):
+    """Process and plot image as input"""
+    if image_path[-3:] == "png":
+        img = imread(image_path)
+    else:
+        img = Image.open(image_path)
+        img = np.asarray(img)
+
+    img = img2double(img)
+    img_gray = np.mean(img, -1)
+
+    n_rows, n_cols = img_gray.shape
+
+    print(f'original image: {img.shape}')
+    print(f'grayscaled image: {img_gray.shape}')
+
+    fig = plt.figure(0, (12, 6))
+    for idx, im in enumerate([img, img_gray]):
+        ax = plt.subplot(1, 2, idx+1)
+        if len(im.shape) == 2:
+            ax.imshow(im, cmap='gray')
+        else:
+            ax.imshow(im)
+
+    return img, img_gray # Output original and grayscale image
+
+
+def plot_grayscale_images(U: np.ndarray, S: np.ndarray, VT: np.ndarray, img_gray: np.ndarray, ranks: list = [5, 25, 50, 100, 250]):
+    """Function to plot the images for different ranks and the original image"""
+    fig = plt.figure(0, (18, 12))
+    fig.subplots_adjust(top=1.1)
+
+    for idx, r in enumerate(ranks):
+        X_r = U[:, :r] @ S[:r, :r] @ VT[:r, :]
+
+        ax = plt.subplot(2, 3, idx+1)
+        ax.imshow(X_r, cmap='gray')
+        ax.set_xticks([])
+        ax.set_yticks([])
+
+        ax.set_title(f'''rank {r}\nfrobenious_norm: {round(frobenious_norm(img_gray, X_r), 2)}''')
+        
+    ax = plt.subplot(2, 3, idx+2)
+    ax.imshow(img_gray, cmap='gray')
+    ax.set_title('original image')
+    plt.show()
+    
+    
+def plot_rank_v_sigma_and_frobenious_norm(U: np.ndarray, S: np.ndarray, VT: np.ndarray, img_gray: np.ndarray):
+    """Function to plot the graphs for rank versus log sigma and rank versus frobenious norm"""
+    fig = plt.figure(0, (12, 6))
+    fig.subplots_adjust(top=1.7, right=1.)
+
+    ax1 = plt.subplot(2, 2, 1)
+    ax1.semilogy(np.diag(S))
+    ax1.set_xlabel('rank')
+    ax1.set_ylabel('log sigma')
+    ax1.set_title('rank   v/s   log_sigma')
+
+    frob_norm = []
+    x_ticks = []
+    rank = np.linalg.matrix_rank(img_gray)
+    for r in np.linspace(1, rank, 100):
+        r = int(r)
+        x_ticks.append(r)
+
+        X_r = U[:, :r] @ S[:r, :r] @ VT[:r, :]
+
+        frob_norm.append(frobenious_norm(img_gray, X_r))
+
+    ax2 = plt.subplot(2, 2, 2)
+    ax2.plot(x_ticks, frob_norm)
+    ax2.set_xlabel('rank')
+    ax2.set_ylabel('frobenious_norm')
+    ax2.set_title('rank   v/s   frobenious_norm')
+    plt.show()
+
+
+def plot_truncate_svd(img_gray, S):
+    """Function to plot the graphs for truncation versus log sigma for different truncation values"""
+    figure, axis = plt.subplots(2, 3, figsize=(15, 15))
+
+    # Use enumerate to get both the index and the value of trunc_values
+    trunc_values = [5, 25, 50, 100, 250]
+    for idx, trunc_value in enumerate(trunc_values):
+        i = idx // 3
+        j = idx % 3
+        axis[i, j].semilogy(truncate_svd(img_gray, 6, trunc_value, trunc_value)[2])
+        axis[i, j].set_title('trunc v/s log_sigma for trunc_value = {}'.format(trunc_value))
+
+    axis[1, 2].semilogy(np.diag(S))
+    axis[1, 2].set_title('trunc v/s log_sigma')
+    plt.show()
+
+    
+def plot_psnr_values(img_gray: np.ndarray):
+    """Function to plot the graphs for PSNR values versus truncation values """
+    psnr_vals = []
+    trunc_values = [5, 25, 50, 100, 250]
+
+    for idx, r in enumerate(trunc_values):
+        psnr_vals.append(truncate_svd(img_gray, 6, r, r)[1])
+
+    plt.plot(trunc_values, psnr_vals,marker='o')
+    plt.title("PSNR Values Plot")
+    plt.xlabel("Trunc values")
+    plt.ylabel("PSNR Values")
+    plt.xticks(trunc_values, rotation ='vertical')
+    plt.show()
+
+    
+def plot_image_channels(img: np.ndarray):
+    """Function to plot the image channels for given truncation values"""
+    trunc_vals = [5, 25, 50, 100, 250]
+    red_channel, green_channel, blue_channel =  img[:, :, 0], img[:, :, 1], img[:, :, 2]
+
+    fig = plt.figure(0, (18, 12))
+    fig.subplots_adjust(top=1.1)
+
+    for idx, r in enumerate(trunc_vals):
+        XR_r = truncate_svd(red_channel, 6, r, r)[0]
+        XG_r = truncate_svd(green_channel, 6, r, r)[0]
+        XB_r = truncate_svd(blue_channel, 6, r, r)[0]
+        X_r = np.dstack((XR_r, XG_r, XB_r))
+        ax = plt.subplot(2, 3, idx+1)
+        ax.imshow(X_r)
+        ax.set_xticks([])
+        ax.set_yticks([]) 
+        ax.set_title(f'''Trunc: {r}\n''')
+
+    ax = plt.subplot(2, 3, idx+2)
+    ax.imshow(img)
+    ax.set_title('original image')
+    ax.set_xticks([])
+    ax.set_yticks([])
