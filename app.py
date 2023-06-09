@@ -37,7 +37,7 @@ def main():
         st.markdown("Please upload your image and set the compression parameters.")
 
         # Set the compression parameter and the SVD algorithm
-        k = st.sidebar.slider("Rank for SVD", 0, 250, 50) 
+        k = st.sidebar.slider("Rank for SVD", 0, 250, 100) 
         svd_algo = st.selectbox('Select SVD Algorithm', ('NumPy', 'Version A', 'Version B'))
 
         # Implement your image compression functions here
@@ -58,12 +58,12 @@ def main():
                 compressed_image, compression_time, size_reduction = compressor.compress_svd(image_array, k, algo='phase_B')
 
             # Output compressed image with size reduction and runtime
-            compressed_image_pil = Image.fromarray(np.uint8(compressed_image))
+            compressed_image_pil = Image.fromarray(np.uint8(image_functions.img2double(compressed_image)))
+            
             st.image(compressed_image_pil, caption="Compressed Image", use_column_width=True)
             st.write(f"Compression Time: {round(compression_time, 3)} seconds")
             st.write(f"Size Reduction: {size_reduction}%")
             st.markdown(get_image_download_link(compressed_image_pil, 'compressed_image.jpg', 'Download compressed image'), unsafe_allow_html=True)
-
     # If user choose the video background extraction feature
     elif app_mode == "Video Background Extraction":
         st.header("Video Background Extraction")

@@ -8,7 +8,10 @@ from . import image_functions as img_func
 def compress_svd(img, r, algo):
     """Compress the image using 2-phase SVD with rank r"""
     # Use nbytes to get the size of the numpy array in bytes
-    original_size = img.nbytes  
+    original_size = img.nbytes
+    
+    # Convert image to float
+    img = img_func.img2double(img)
 
     # Initialize start time
     start_time = time.time()
@@ -17,12 +20,32 @@ def compress_svd(img, r, algo):
     if len(img.shape) == 3:
         red_channel, green_channel, blue_channel =  img[:, :, 0], img[:, :, 1], img[:, :, 2]
 
-        XR_r = img_func.truncate_svd(red_channel, 6, r, r, svd_version=algo)[0]
-        XG_r = img_func.truncate_svd(green_channel, 6, r, r, svd_version=algo)[0]
-        XB_r = img_func.truncate_svd(blue_channel, 6, r, r, svd_version=algo)[0]
-        X_r = np.dstack((XR_r, XG_r, XB_r))
-
-        compressed_image = X_r
+        # XR_r = img_func.truncate_svd(red_channel, 66, r, r, svd_version=algo)[0]
+        # XG_r = img_func.truncate_svd(green_channel, 66, r, r, svd_version=algo)[0]
+        # XB_r = img_func.truncate_svd(blue_channel, 66, r, r, svd_version=algo)[0]
+        # X_r = np.dstack((XR_r, XG_r, XB_r))
+        
+        if algo == 'numpy':
+            U_B, S_B, VT_B = img_func.numpy_svd(blue_channel)
+            U_G, S_G, VT_G = img_func.numpy_svd(green_channel)
+            U_R, S_R, VT_R = img_func.numpy_svd(red_channel)
+        elif algo == 'phase_A':
+            U_B, S_B, VT_B = img_func.phase_A_svd(blue_channel)
+            U_G, S_G, VT_G = img_func.phase_A_svd(green_channel)
+            U_R, S_R, VT_R = img_func.phase_A_svd(red_channel)
+        elif algo == 'phase_B':
+            U_B, S_B, VT_B = img_func.phase_B_svd(blue_channel)
+            U_G, S_G, VT_G = img_func.phase_B_svd(green_channel)
+            U_R, S_R, VT_R = img_func.phase_B_svd(red_channel)
+        else:
+            raise ValueError(f"Unknown algorithm: {algo}")
+        
+        # Output compressed image
+        XR_r = U_R[:, :r] @ S_R[:r, :r] @ VT_R[:r, :]
+        XG_r = U_G[:, :r] @ S_G[:r, :r] @ VT_G[:r, :]
+        XB_r = U_B[:, :r] @ S_B[:r, :r] @ VT_B[:r, :]
+        compressed_image = np.dstack((XR_r, XG_r, XB_r))
+        
     # If image is grayscale
     else:
         if algo == 'numpy':
