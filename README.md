@@ -9,7 +9,7 @@ This project is dedicated to the course project of the course DDA3005: Numerical
 1. Implement the two-phase procedure discussed in the lecture to compute a singular value decomposition:
 
    $$A = U \Sigma V^T$$
-   
+
    for any $A \in \mathbb{R}^{m \times n}$ using the Python programming language.
 
 2. In this part, we want to explore how the SVD can be utilized in the context of deblurring image problems. This will lead to analyze which SVD algorithm is the most efficient for image compression. We will test at least three different scenarios/images and compare the performance and runtime of each SVD approaches and which algorithm output the more accuracte singular values and which one reaches convergence faster.
@@ -79,34 +79,34 @@ Project Structure
 
 ## Installation
 1. Clone this repository using the following command:
-   ```
+   ```shell
    git clone https://github.com/dboesono/SVD-ImageCompressor-VideoExtractor.git
    ```
 2. Navigate to the project directory using the command:
-   ```
+   ```shell
    cd SVD-ImageCompressor-VideoExtractor
    ```
 3. Create a virtual environment using the command:
-   ```
+   ```shell
    python -m venv env
    ```
 4. Activate the virtual environment according to your operating system:
    - On Windows:
-        ```
+        ```shell
         .\env\Scripts\activate
         ``` 
     - On Unix or MacOS:
-        ```
+        ```shell
         source env/bin/activate
         ``` 
 5. Install the necessary packages:
-   ```
+   ```shell
    pip install -r requirements.txt
    ```
 
 
 ## Usage
 Run the following command to start the Streamlit web app:
-```
+```shell
 streamlit run app.py
 ```
