@@ -2,28 +2,66 @@ Image Compression & Video Background Extraction using SVD
 ==============================
 
 
-## Project Overall Description
+## Project Overview
 
-This project is dedicated to the course project of the course DDA3005: Numerical Methods (Term 1, 2022/2023) at The Chinese University of Hong Kong, Shenzhen (CUHK-SZ). The main objective of this project is to investigate and study different algorithms to compute singular value decompositions and to utilize SVDs in several interesting imaging applications. The tasks of the project can be divided into the following:
+This project was undertaken as part of the course DDA3005: Numerical Methods during Term 1, 2022/2023 at The Chinese University of Hong Kong, Shenzhen (CUHK-SZ). The principal goal of the project is to explore, analyze, and implement various algorithms for computing singular value decompositions (SVD), and leverage SVD for diverse imaging applications. The project comprises four primary components:
 
-1. Implement the two-phase procedure discussed in the lecture to compute a singular value decomposition:
+1. Design and Implementation of the SVD Algorithm:
+   
+   Implemented the two-phase procedure, detailed in the lectures, to compute the singular value decomposition of any given matrix $A \in \mathbb{R}^{m \times n}$, denoted as:
 
-   $$A = U \Sigma V^T$$
+   $$
 
-   for any $A \in \mathbb{R}^{m \times n}$ using the Python programming language.
+     \text{A} = {\text{U} \Sigma \text{V}}^\text{T} = 
+   \underset{m \times m}{
+      \begin{bmatrix}
+         | & | & \ & | \\
+         u_{1} & u_{2} & \dots & u_{m} \\
+         | & | & \ & |
+      \end{bmatrix}
+   }
+   \times
+   \underset{m \times n}{
+   \begin{bmatrix}
+   \sigma_{1} & 0 & \dots & 0 \\
+   0 & \sigma_{2} & \dots & 0 \\
+   \vdots & \vdots & \ddots & \vdots \\
+   0 & 0 & \dots & \sigma_{n} \\
+   0 & 0 & \vdots & 0 \\
+   \end{bmatrix}}
+   \times
+   \underset{n \times n}{
+      \begin{bmatrix}
+          & V_{1}^T &   \\
+          & V_{2}^T &  \\
+         \ & \vdots &  \ \\
+          & V_{n}^T &  \\
+      \end{bmatrix}
+   }
+   $$
 
-2. In this part, we want to explore how the SVD can be utilized in the context of deblurring image problems. This will lead to analyze which SVD algorithm is the most efficient for image compression. We will test at least three different scenarios/images and compare the performance and runtime of each SVD approaches and which algorithm output the more accuracte singular values and which one reaches convergence faster.
-3. In this part of the project, we want to utilize the SVD and power iterations in order to extract the background information of some given video data and compare the performance and runtime of our implemented algorithm to standard software packages.
-4. We will create a web application using the Streamlit framework providing image compression and video background extraction using our findings in the previous steps.
+   This was achieved utilizing Python, exhibiting a solid understanding of linear algebra and programming.
 
-The complete project description can be found [here](./reports/project_description.pdf).
+2. Application of SVD in Image Deblurring:
+   
+   Explored the use of SVD in the context of image deblurring problems. This exploration aimed at identifying the most efficient SVD algorithm for image compression. We conducted a comparative analysis of the performance, accuracy of singular values, and the speed of convergence across a minimum of three different scenarios/images.
+
+3. Utilization of SVD in Video Background Extraction:
+   
+   Leveraged SVD and power iterations to extract background information from given video data. We compared the efficiency and runtime of our bespoke algorithm against industry-standard software packages, demonstrating proficiency in implementing and optimizing numerical methods.
+
+4. Development of a Web Application:
+   
+   Constructed a web application using the Streamlit framework. The application offers image compression and video background extraction functionalities based on the findings and methodologies derived from previous steps, showcasing ability to deploy machine learning models in a user-friendly application.
+
+For a comprehensive understanding of the project, the complete project description is available [here](./reports/project_description.pdf).
 
 
 ## Team Members
 
 | Student ID | Student Name   | Email                        
 | :----------: | :--------------: | :------------------------------: | 
-| 120090727  | Darren Boesono        | 120040022@link.cuhk.edu.cn     | 
+| 120040022  | Darren Boesono        | 120040022@link.cuhk.edu.cn     | 
 | 120090356  | Yitao Wang        |    120090356@link.cuhk.edu.cn  | 
 | 120040002  | Joseph Ariel Christopher Teja          | 120040002@link.cuhk.edu.cn     | 
 | 120040023  | Jefferson Joseph Tedjojuwono            | 120040023@link.cuhk.edu.cn     | 
@@ -80,39 +118,39 @@ Project Structure
 ## Installation
 1. Clone this repository using the following command:
    
-   ```shell
+   ```bash
    git clone https://github.com/dboesono/SVD-ImageCompressor-VideoExtractor.git
    ```
 2. Navigate to the project directory using the command:
    
-   ```shell
+   ```bash
    cd SVD-ImageCompressor-VideoExtractor
    ```
 3. Create a virtual environment using the command:
 
-   ```shell
+   ```bash
    python -m venv env
    ```
 4. Activate the virtual environment according to your operating system:
    - On Windows:
   
-        ```shell
+        ```bash
         .\env\Scripts\activate
         ``` 
     - On Unix or MacOS:
   
-        ```shell
+        ```bash
         source env/bin/activate
         ``` 
 5. Install the necessary packages:
    
-   ```shell
+   ```bash
    pip install -r requirements.txt
    ```
 
 
 ## Usage
 Run the following command to start the Streamlit web app:
-```shell
+```bash
 streamlit run app.py
 ```
