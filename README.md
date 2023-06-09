@@ -1,4 +1,4 @@
-SVD_ver3
+Image Compression & Video Background Extraction using SVD
 ==============================
 
 A streamlit web app that provide image compression and video background extraction functionality using different kind of SVD algorithm
@@ -7,7 +7,7 @@ Project Organization
 ------------
 
     ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
+    ├── Makefile           <- Makefile with commands like `make data` or 
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
     │   ├── external       <- Data from third party sources.
@@ -46,7 +46,7 @@ Project Organization
     │   │   └── __init__.py 
     │   │   └── two_phase_svd.py
     │   │
-    │   ├── VideoBackgroundExtractor         
+    │   └── VideoBackgroundExtractor         
     │       │                 
     │       ├── __init__.py
     │       └── extractor.py
