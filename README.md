@@ -79,27 +79,33 @@ Project Structure
 
 ## Installation
 1. Clone this repository using the following command:
+   
    ```shell
    git clone https://github.com/dboesono/SVD-ImageCompressor-VideoExtractor.git
    ```
 2. Navigate to the project directory using the command:
+   
    ```shell
    cd SVD-ImageCompressor-VideoExtractor
    ```
 3. Create a virtual environment using the command:
+
    ```shell
    python -m venv env
    ```
 4. Activate the virtual environment according to your operating system:
    - On Windows:
+  
         ```shell
         .\env\Scripts\activate
         ``` 
     - On Unix or MacOS:
+  
         ```shell
         source env/bin/activate
         ``` 
 5. Install the necessary packages:
+   
    ```shell
    pip install -r requirements.txt
    ```
