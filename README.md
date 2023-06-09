@@ -7,50 +7,10 @@ Image Compression & Video Background Extraction using SVD
 This project is dedicated to the course project of the course DDA3005: Numerical Methods (Term 1, 2022/2023) at The Chinese University of Hong Kong, Shenzhen (CUHK-SZ). The main objective of this project is to investigate and study different algorithms to compute singular value decompositions and to utilize SVDs in several interesting imaging applications. The tasks of the project can be divided into the following:
 
 1. Implement the two-phase procedure discussed in the lecture to compute a singular value decomposition:
-   
 
    $$
-
-
-   \text{A} = 
-    \underset{m \times n}{
-        \begin{bmatrix}
-            x_{11} & x_{12} & \dots & x_{1n} \\
-            x_{21} & x_{22} & \dots & x_{2n} \\
-            \vdots & \vdots & \ddots & \vdots \\
-            x_{m1} & x_{m2} & \dots & x_{mn}
-        \end{bmatrix}
-    }
-    = {U\Sigma V}^\text{T} = 
-    \underset{m \times m}{
-        \begin{bmatrix}
-            | & | & \ & | \\
-            u_{1} & u_{2} & \dots & u_{m} \\
-            | & | & \ & |
-        \end{bmatrix}
-    }
-    \times
-    \underset{m \times n}{
-    \begin{bmatrix}
-    \sigma_{1} & 0 & \dots & 0 \\
-    0 & \sigma_{2} & \dots & 0 \\
-    \vdots & \vdots & \ddots & \vdots \\
-    0 & 0 & \dots & \sigma_{n} \\
-    0 & 0 & \vdots & 0 \\
-    \end{bmatrix}}
-    \times
-    \underset{n \times n}{
-        \begin{bmatrix}
-             & V_{1}^T &   \\
-           & V_{2}^T &  \\
-            \ & \vdots &  \ \\
-             & V_{n}^T &  \\
-        \end{bmatrix}
-    }
-
-    
+    A = U \Sigma V^T
    $$
-
 
    for any $A \in \mathbb{R}^{m \times n}$ using the Python programming language.
 
