@@ -10,6 +10,8 @@ This project is dedicated to the course project of the course DDA3005: Numerical
    
 
    $$
+
+
    \text{A} = 
     \underset{m \times n}{
         \begin{bmatrix}
@@ -45,6 +47,8 @@ This project is dedicated to the course project of the course DDA3005: Numerical
              & V_{n}^T &  \\
         \end{bmatrix}
     }
+
+    
    $$
 
 
