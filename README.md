@@ -7,6 +7,8 @@ Image Compression & Video Background Extraction using SVD
 This project is dedicated to the course project of the course DDA3005: Numerical Methods (Term 1, 2022/2023) at The Chinese University of Hong Kong, Shenzhen (CUHK-SZ). The main objective of this project is to investigate and study different algorithms to compute singular value decompositions and to utilize SVDs in several interesting imaging applications. The tasks of the project can be divided into the following:
 
 1. Implement the two-phase procedure discussed in the lecture to compute a singular value decomposition:
+   
+
    $$
    \text{A} = 
     \underset{m \times n}{
@@ -44,7 +46,9 @@ This project is dedicated to the course project of the course DDA3005: Numerical
         \end{bmatrix}
     }
    $$
-    for any $A \in \mathbb{R}^{m \times n}$ using the Python programming language.
+
+
+   for any $A \in \mathbb{R}^{m \times n}$ using the Python programming language.
 
 2. In this part, we want to explore how the SVD can be utilized in the context of deblurring image problems. This will lead to analyze which SVD algorithm is the most efficient for image compression. We will test at least three different scenarios/images and compare the performance and runtime of each SVD approaches and which algorithm output the more accuracte singular values and which one reaches convergence faster.
 3. In this part of the project, we want to utilize the SVD and power iterations in order to extract the background information of some given video data and compare the performance and runtime of our implemented algorithm to standard software packages.
