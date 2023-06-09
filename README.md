@@ -1,7 +1,6 @@
 Image Compression & Video Background Extraction using SVD
 ==============================
 
-A streamlit web app that provide image compression and video background extraction functionality using different kind of SVD algorithm
 
 Project Organization
 ------------
@@ -9,24 +8,18 @@ Project Organization
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or 
     ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
     │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
     │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
+    ├── notebooks                       <- Jupyter notebooks
+    │    |                
+    │    └──  analyze_results.ipynb     <- Results analytics in a jupyter notebook          
     │
     ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
     │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
+    ├── reports                       <- Generated analysis as HTML, PDF, LaTeX, etc.
+    |   ├── project_description.pdf   <- Description about the project
+    │   └── figures                   <- Generated graphics and figures to be used in reporting
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
@@ -35,26 +28,24 @@ Project Organization
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
     │   │
-    │   ├── ImageCompressor
+    │   ├── ImageCompressor             <- Source code for image compression feature of the app
     │   │    │
-    │   │    └── __init__.py          
-    │   │    └── image_functions.py
-    │   │    └── compressor.py
+    │   │    ├── __init__.py            <- Makes ImageCompressor a Python Module
+    │   │    ├── image_functions.py     <- Contains Python functions for imaging applications
+    │   │    └── compressor.py          <- Contain the image compressor for the app
     │   │
-    │   ├── SVD    
+    │   ├── SVD                       <- Source for the main 2-Phase SVD algorithms
     │   │   │
-    │   │   └── __init__.py 
-    │   │   └── two_phase_svd.py
+    │   │   ├── __init__.py           <- Makes SVD a Python module
+    │   │   └── two_phase_svd.py      <- The main 2-Phase SVD algorithms
     │   │
-    │   └── VideoBackgroundExtractor         
+    │   └── VideoBackgroundExtractor   <- Source code for the video background extraction feature of the app
     │       │                 
-    │       ├── __init__.py
-    │       └── extractor.py
+    │       ├── __init__.py            <- Makes VideoBackgroundExtractor a Python Module
+    │       └── extractor.py           <- Main code for the Video Background Extractor
     │   
     │
     ├── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-    ├── app.py
+    ├── app.py             <- Main streamlit web application
 
---------
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
