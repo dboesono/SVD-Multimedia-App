@@ -1,27 +1,26 @@
 import streamlit as st
 import numpy as np
-from src.ImageCompressor import image_functions
+from src.ImageCompressor import image_functions 
 from src.ImageCompressor import compressor
 from src.VideoBackgroundExtractor import extractor
 from PIL import Image
-from matplotlib.pyplot import imread
+from matplotlib import pyplot as plt
 import tempfile
 import os
 import base64
 from io import BytesIO
 import time
+import cv2
 
 
-def get_image_download_link(img, filename, text):
+def get_image_download_link(img_bytes, filename, text):
     """Generate download button in the streamlit app"""
-    buffered = BytesIO()
-    img.save(buffered, format="JPEG")
-    img_str = base64.b64encode(buffered.getvalue()).decode()
+    img_str = base64.b64encode(img_bytes).decode()
     href = f'''
     <a style="color: #ffffff; background-color: #3498db; padding: 10px; border-radius: 3px; text-decoration: none;" 
-       onmouseover="this.style.textDecoration='underline';" 
-       onmouseout="this.style.textDecoration='none';"
-       href="data:file/jpg;base64,{img_str}" download="{filename}">{text}</a>'''
+    onmouseover="this.style.textDecoration='underline';" 
+    onmouseout="this.style.textDecoration='none';"
+    href="data:file/jpg;base64,{img_str}" download="{filename}">{text}</a>'''
     return href
 
 
@@ -45,9 +44,10 @@ def main():
 
         if uploaded_file is not None:
             # Continue with your image compression logic here...
-            image = Image.open(uploaded_file)
+            image = plt.imread(uploaded_file)
+
             st.image(image, caption="Original Image", use_column_width=True)
-            image_array = image_functions.img2double(np.array(image))
+            image_array = image_functions.img2double(image)
 
             # Compress image with the specified type of SVD algorithm
             if svd_algo == "NumPy":
@@ -57,13 +57,41 @@ def main():
             elif svd_algo == "Version B":
                 compressed_image, compression_time, size_reduction = compressor.compress_svd(image_array, k, algo='phase_B')
 
-            # Output compressed image with size reduction and runtime
-            compressed_image_pil = Image.fromarray(np.uint8(image_functions.img2double(compressed_image)))
+            # Clip values to range 0-1 and rescale to 0-255.
+            compressed_image = np.clip(compressed_image, 0, 1)
+            # compressed_image = (compressed_image * 255).astype(np.uint8)
             
-            st.image(compressed_image_pil, caption="Compressed Image", use_column_width=True)
+            # Show the compressed image using matplotlib
+            # fig, ax = plt.subplots()
+            # ax.imshow(compressed_image)
+            # ax.axis('off')  # Remove axis
+            # fig.patch.set_visible(False)
+            # st.pyplot(fig)
+
+            # Save the compressed image
+            # plt.imsave('compressed_image.jpg', compressed_image)
+            # compressed_image_pil = plt.imread('compressed_image.jpg')
+            
+            # Display compressed image
+            st.image(compressed_image, caption="Compressed Image", use_column_width=True)
+            
+            # Convert the image array to a byte string for download
+            compressed_image_uint8 = (compressed_image * 255).astype(np.uint8)
+            is_success, im_buf_arr = cv2.imencode(".jpg", cv2.cvtColor(compressed_image_uint8, cv2.COLOR_RGB2BGR))
+            byte_im = im_buf_arr.tobytes()
+            
             st.write(f"Compression Time: {round(compression_time, 3)} seconds")
             st.write(f"Size Reduction: {size_reduction}%")
-            st.markdown(get_image_download_link(compressed_image_pil, 'compressed_image.jpg', 'Download compressed image'), unsafe_allow_html=True)
+                        
+            # Generate download link for the compressed image
+            st.markdown(get_image_download_link(byte_im, 'compressed_image.jpg', 'Download compressed image'), unsafe_allow_html=True)
+            
+            # Check if file exists then remove it
+            # if os.path.isfile('compressed_image.jpg'):
+            #     os.remove('compressed_image.jpg')
+            # else:
+            #     print("Error: %s file not found" % 'compressed_image.jpg')
+
     # If user choose the video background extraction feature
     elif app_mode == "Video Background Extraction":
         st.header("Video Background Extraction")
@@ -87,10 +115,15 @@ def main():
                 start_time = time.time()
 
                 # Extract background information matrix 
-                B = image_functions.img2double(extractor.mixed_color(video_path))
+                background = extractor.mixed_color(video_path)
                 
-                # Turn the background information matrix into an image
-                background = Image.fromarray((B * 255).astype(np.uint8))
+                # Clip values to range 0-1 and rescale to 0-255.
+                background = np.clip(background, 0, 1)
+                
+                # Convert the image array to a byte string for download
+                background_uint8 = (background * 255).astype(np.uint8)
+                is_success2, im_buf_arr2 = cv2.imencode(".jpg", cv2.cvtColor(background_uint8, cv2.COLOR_RGB2BGR))
+                byte_im2 = im_buf_arr2.tobytes()
                 
                 # Output iamge
                 st.image(background, caption="Extracted Video Background", use_column_width=True)
@@ -101,7 +134,7 @@ def main():
                 # Calculate elapsed time
                 elapsed_time = end_time - start_time
                 st.write(f"Background extraction time: {round(elapsed_time, 3)} seconds")     
-                st.markdown(get_image_download_link(background, 'background_image.jpg', 'Download background image'), unsafe_allow_html=True)
+                st.markdown(get_image_download_link(byte_im2, 'background_image.jpg', 'Download background image'), unsafe_allow_html=True)
             finally:
                 # Now we're done with the file, so we can delete it
                 tfile.close()
