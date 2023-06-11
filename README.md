@@ -130,18 +130,10 @@ streamlit run app.py
 Below are the video demos of the Image Compression and Video Background Extraction functionalities:
 
 ### Image Comparison
-[![Image Compression Demo Video](http://img.youtube.com/vi/mPTxyFu-mo8/0.jpg)](http://www.youtube.com/watch?v=mPTxyFu-mo8 "Image Compression Demo Video")
-
-Click on the image to play the video
+![Image Compression Demo Video](./resources/demo/jellyfish_compression.gif)
 
 ### Video Background Extraction
-We want to extract the background information of the video data with filename `street.mp4` located in `./resources/test_videos`. Click the image below to play the video:
 
-[![Street Video](http://img.youtube.com/vi/OJR3K1VanFs/0.jpg)](http://www.youtube.com/watch?v=OJR3K1VanFs "Street Video")
+We want to extract the background information of the video data with filename `street.mp4` which you can view [here](https://www.youtube.com/watch?v=OJR3K1VanFs)
 
-The following video shows how to use the web app to extract the video background information:
-
-[![Video Background Extraction Demo Video](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_2/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_2 "Video Background Extraction Demo Video")
-
-
-Click on the image to play the video.
+![Video Background Extraction Demo](./resources/demo/street_extraction.gif)
