@@ -7,8 +7,7 @@ Image Compression & Video Background Extraction using SVD
 This project was undertaken as part of the course DDA3005: Numerical Methods during Term 1, 2022/2023 at The Chinese University of Hong Kong, Shenzhen (CUHK-SZ). The principal goal of the project is to explore, analyze, and implement various algorithms for computing singular value decompositions (SVD), and leverage SVD for diverse imaging applications. The project comprises four primary components:
 
 1. Design and Implementation of the SVD Algorithm:
-   
-   Implemented the two-phase procedure, detailed in the lectures, to compute the singular value decomposition of any given matrix $A \in \mathbb{R}^{m \times n}$, denoted as:
+   Implemented the two-phase procedure, detailed in the lectures, to compute the singular value decomposition of any given matrix $\text{A} \in \mathbb{R}^{m \times n}$, denoted as:
 
    $$\text{A} = \text{U} \Sigma \text{V}^\text{T}$$
 
@@ -71,20 +70,19 @@ Project Structure
     │   │    ├── image_functions.py     <- Contains Python functions for imaging applications
     │   │    └── compressor.py          <- Contain the image compressor for the app
     │   │
-    │   ├── SVD                       <- Source for the main 2-Phase SVD algorithms
+    │   ├── SVD                         <- Source for the main 2-Phase SVD algorithms
     │   │   │
-    │   │   ├── __init__.py           <- Makes SVD a Python module
-    │   │   └── two_phase_svd.py      <- The main 2-Phase SVD algorithms
+    │   │   ├── __init__.py             <- Makes SVD a Python module
+    │   │   └── two_phase_svd.py        <- The main 2-Phase SVD algorithms
     │   │
-    │   └── VideoBackgroundExtractor   <- Source code for the video background extraction feature of the app
+    │   └── VideoBackgroundExtractor    <- Source code for the video background extraction feature of the app
     │       │                 
-    │       ├── __init__.py            <- Makes VideoBackgroundExtractor a Python Module
-    │       └── extractor.py           <- Main code for the Video Background Extractor
+    │       ├── __init__.py             <- Makes VideoBackgroundExtractor a Python Module
+    │       └── extractor.py            <- Main code for the Video Background Extractor
     │   
     │
-    ├── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-    ├── app.py             <- Main streamlit web application
-
+    ├── tox.ini     <- tox file with settings for running tox; see tox.readthedocs.io
+    └── app.py      <- Main streamlit web application
 
 
 ## Installation
@@ -126,3 +124,24 @@ Run the following command to start the Streamlit web app:
 ```bash
 streamlit run app.py
 ```
+
+
+## Demo
+Below are the video demos of the Image Compression and Video Background Extraction functionalities:
+
+### Image Comparison
+[![Image Compression Demo Video](http://img.youtube.com/vi/mPTxyFu-mo8/0.jpg)](http://www.youtube.com/watch?v=mPTxyFu-mo8 "Image Compression Demo Video")
+
+Click on the image to play the video
+
+### Video Background Extraction
+We want to extract the background information of the video data with filename `street.mp4` located in `./resources/test_videos`. Click the image below to play the video:
+
+[![Street Video](http://img.youtube.com/vi/OJR3K1VanFs/0.jpg)](http://www.youtube.com/watch?v=OJR3K1VanFs "Street Video")
+
+The following video shows how to use the web app to extract the video background information:
+
+[![Video Background Extraction Demo Video](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_2/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_2 "Video Background Extraction Demo Video")
+
+
+Click on the image to play the video.
