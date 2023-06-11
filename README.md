@@ -46,6 +46,13 @@ Project Structure
     ├── README.md          <- The top-level README for developers using this project.
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
     │
+    ├── resources            
+    │    ├── demo
+    │    │    ├── jelly_fish_compression.gif   <- Image compression demo
+    │    │    └── street_extraction.gif        <- Background extraction demo
+    │    ├── test_images
+    │    └── test_videos      
+    │   
     │
     ├── notebooks                       <- Jupyter notebooks
     │    |                
