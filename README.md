@@ -137,10 +137,10 @@ streamlit run app.py
 Below are the video demos of the Image Compression and Video Background Extraction functionalities:
 
 ### Image Comparison
-![Image Compression Demo Video](./resources/demo/jellyfish_compression.gif)
+![Image Compression Demo Video](https://github.com/dboesono/SVD-ImageCompressor-VideoExtractor/blob/main/resources/demo/jellyfish_compression.gif?raw=true)
 
 ### Video Background Extraction
 
 We want to extract the background information of the video data with filename `street.mp4` which you can view [here](https://www.youtube.com/watch?v=OJR3K1VanFs)
 
-![Video Background Extraction Demo](./resources/demo/street_extraction.gif)
+![Video Background Extraction Demo](https://github.com/dboesono/SVD-ImageCompressor-VideoExtractor/blob/main/resources/demo/street_extraction.gif?raw=true)
