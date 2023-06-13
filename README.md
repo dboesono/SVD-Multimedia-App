@@ -14,15 +14,12 @@ This project was undertaken as part of the course DDA3005: Numerical Methods dur
    This was achieved utilizing Python, exhibiting a solid understanding of linear algebra and programming.
 
 2. Application of SVD in Image Deblurring:
-   
    Explored the use of SVD in the context of image deblurring problems. This exploration aimed at identifying the most efficient SVD algorithm for image compression. We conducted a comparative analysis of the performance, accuracy of singular values, and the speed of convergence across a minimum of three different scenarios/images.
 
 3. Utilization of SVD in Video Background Extraction:
-   
    Leveraged SVD and power iterations to extract background information from given video data. We compared the efficiency and runtime of our bespoke algorithm against industry-standard software packages, demonstrating proficiency in implementing and optimizing numerical methods.
 
 4. Development of a Web Application:
-   
    Constructed a web application using the Streamlit framework. The application offers image compression and video background extraction functionalities based on the findings and methodologies derived from previous steps, showcasing ability to deploy machine learning models in a user-friendly application.
 
 For a comprehensive understanding of the project, the complete project description is available [here](./reports/project_description.pdf).
