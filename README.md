@@ -137,7 +137,7 @@ streamlit run app.py
 Below are the video demos of the Image Compression and Video Background Extraction functionalities:
 
 
-### Image Comparison
+### Image Compression
 ![Image Compression Demo Video](https://github.com/dboesono/SVD-ImageCompressor-VideoExtractor/blob/main/resources/demo/jellyfish_compression.gif?raw=true)
 
 ### Video Background Extraction
