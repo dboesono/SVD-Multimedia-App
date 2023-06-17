@@ -30,9 +30,9 @@ For a comprehensive understanding of the project, the complete project descripti
 | Student ID | Student Name   | Email                        
 | :----------: | :--------------: | :------------------------------: | 
 | 120040022  | Darren Boesono        | 120040022@link.cuhk.edu.cn     | 
-| 120090356  | Yitao Wang        |    120090356@link.cuhk.edu.cn  | 
+| 120040023  | Jefferson Joseph Tedjojuwono            | 120040023@link.cuhk.edu.cn     |
 | 120040002  | Joseph Ariel Christopher Teja          | 120040002@link.cuhk.edu.cn     | 
-| 120040023  | Jefferson Joseph Tedjojuwono            | 120040023@link.cuhk.edu.cn     | 
+| 120090356  | Yitao Wang        |    120090356@link.cuhk.edu.cn  | 
 
 
 Project Structure
