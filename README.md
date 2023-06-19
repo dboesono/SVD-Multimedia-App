@@ -4,7 +4,7 @@ Image Compression & Video Background Extraction using SVD
 
 ## Project Overview
 
-This project was undertaken as part of the course DDA3005: Numerical Methods during Term 1, 2022/2023 at The Chinese University of Hong Kong, Shenzhen (CUHK-SZ). The principal goal of the project is to explore, analyze, and implement various algorithms for computing singular value decompositions (SVD), and leverage SVD for diverse imaging applications. The project comprises four primary components:
+This project was undertaken as part of the course **DDA3005: Numerical Methods** during Term 1, 2022/2023 at The Chinese University of Hong Kong, Shenzhen (CUHK-SZ). The principal goal of the project is to explore, analyze, and implement various algorithms for computing singular value decompositions (SVD), and leverage SVD for diverse imaging applications. The project comprises four primary components:
 
 1. Design and Implementation of the SVD Algorithm:
    Implemented the two-phase procedure, detailed in the lectures, to compute the singular value decomposition of any given matrix $\text{A} \in \mathbb{R}^{m \times n}$, denoted as:
