@@ -93,12 +93,13 @@ Project Structure
 1. Clone this repository using the following command:
    
    ```bash
-   git clone https://github.com/dboesono/SVD-ImageCompressor-VideoExtractor.git
+   git clone https://github.com/dboesono/SVD-Multimedia-App.git
    ```
+   
 2. Navigate to the project directory using the command:
    
    ```bash
-   cd SVD-ImageCompressor-VideoExtractor
+   cd SVD-Multimedia-App
    ```
 3. Create a virtual environment using the command:
 
@@ -121,7 +122,6 @@ Project Structure
    ```bash
    pip install -r requirements.txt
    ```
-
 
 ## Usage
 Run the following command to start the Streamlit web app:
