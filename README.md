@@ -48,8 +48,7 @@ Project Structure
     │    │    ├── jelly_fish_compression.gif   <- Image compression demo
     │    │    └── street_extraction.gif        <- Background extraction demo
     │    ├── test_images
-    │    └── test_videos      
-    │   
+    │    └── test_videos        
     │
     ├── notebooks                       <- Jupyter notebooks
     │    |                
@@ -135,10 +134,24 @@ Below are the video demos of the Image Compression and Video Background Extracti
 
 
 ### Image Compression
+For the image compression demo, we want to compress the image file under the name `640_640_jellyfish.jpg` shown below:
+
+![jellyfish](./resources/test_images/640_640_jellyfish.png)
+
+The demo is shown as follows:
+
 ![Image Compression Demo Video](https://github.com/dboesono/SVD-ImageCompressor-VideoExtractor/blob/main/resources/demo/jellyfish_compression.gif?raw=true)
+
+The compressed image using SVD is shown below:
+
+![jellyfish](./resources/test_images/jellyfish_compressed.jpg)
 
 ### Video Background Extraction
 
 We want to extract the background information of the video data with filename `street.mp4` which you can view [here](https://www.youtube.com/watch?v=OJR3K1VanFs):
 
 ![Video Background Extraction Demo](https://github.com/dboesono/SVD-ImageCompressor-VideoExtractor/blob/main/resources/demo/street_extraction.gif?raw=true)
+
+The extracted background information is shown as follows:
+
+![Background](./resources/test_videos/background_image.jpg)
